@@ -73,6 +73,10 @@ def form():
 @app.route("/conclusion")
 def conclusion():
     return render_template("conclusion.html")
+
+@app.route("/aboutme")
+def aboutme():
+    return render_template("aboutme.html")
 # Define what to do when a user hits the /model route
 @app.route("/send",  methods=['POST', 'GET'])
 def send():

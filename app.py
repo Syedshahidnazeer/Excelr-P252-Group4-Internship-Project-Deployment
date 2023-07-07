@@ -70,6 +70,9 @@ def visuals():
 def form():
     return render_template("form.html", model_result = " ")
 
+@app.route("/conclusion")
+def conclusion():
+    return render_template("conclusion.html")
 # Define what to do when a user hits the /model route
 @app.route("/send",  methods=['POST', 'GET'])
 def send():

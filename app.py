@@ -77,6 +77,9 @@ def conclusion():
 @app.route("/aboutme")
 def aboutme():
     return render_template("aboutme.html")
+@app.route("/ppt")
+def ppt():
+    return render_template("ppt.html")
 # Define what to do when a user hits the /model route
 @app.route("/send",  methods=['POST', 'GET'])
 def send():

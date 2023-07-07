@@ -5,10 +5,10 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.exceptions import NotFittedError
 
 # Load the pre-trained logistic regression model
 model = pickle.load(open('logistic_regression.sav', 'rb'))
-
 # Load NLTK resources
 nltk.download('stopwords')
 nltk.download('wordnet')
@@ -41,6 +41,10 @@ def preprocess_text(text):
 
 # Vectorize text using TF-IDF
 vectorizer = TfidfVectorizer()
+try:
+    vectorizer = pickle.load(open('count_vectorizer_var.pkl', 'rb'))
+except (FileNotFoundError, NotFittedError):
+    pass
 
 def vectorize_text(text):
     vectorized_text = vectorizer.transform([text])
@@ -51,7 +55,7 @@ def main():
     st.title("Fake News Detection")
 
     # Get user input
-    user_input = st.text_area("Enter a news headline or article text:")
+    user_input = st.text_input("Enter a news headline or article text:")
 
     if st.button("Check"):
         # Preprocess user input
